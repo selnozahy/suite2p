@@ -369,6 +369,12 @@ class ROIDraw(QMainWindow):
             elif event.key() == QtCore.Qt.Key_T:
                 self.viewbtns.button(3).setChecked(True)
                 self.viewbtns.button(3).press(self, 3)
+            elif event.key() == QtCore.Qt.Key_Y:
+                self.viewbtns.button(4).setChecked(True)
+                self.viewbtns.button(4).press(self, 4)
+            elif event.key() == QtCore.Qt.Key_U:
+                self.viewbtns.button(5).setChecked(True)
+                self.viewbtns.button(5).press(self, 5)
 
     def add_ROI(self, pos=None):
         self.iROI = len(self.ROIs)
