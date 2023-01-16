@@ -191,7 +191,9 @@ class ROIDraw(QMainWindow):
         self.views = ["W: mean img",
                       "E: mean img (enhanced)",
                       "R: correlation map",
-                      "T: max projection"]
+                      "T: max projection",
+                      "Y: mean img chan2, corr",
+                      "U: mean img chan2"]                     
         b = 0
         self.viewbtns = QButtonGroup(self)
         for names in self.views:
