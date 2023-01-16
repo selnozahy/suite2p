@@ -321,12 +321,15 @@ class ROIDraw(QMainWindow):
                 mimg = np.zeros((self.Ly, self.Lx), np.float32)
                 if 'meanImg_chan2_corrected' in self.parent.ops:
                     mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
-                        self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['meanImg_chan2_corrected']
+                        self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['meanImg_chan2_corrected'][self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
+                                                                                                                                self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]]
             elif i == 5:
                 mimg = np.zeros((self.Ly, self.Lx), np.float32)
                 if 'meanImg_chan2' in self.parent.ops:
                     mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
-                        self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['meanImg_chan2']
+                        self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['meanImg_chan2'][self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
+                                                                                                                      self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]]
+
 
             mimg1 = np.percentile(mimg, 1)
             mimg99 = np.percentile(mimg, 99)
