@@ -302,7 +302,6 @@ class ROIDraw(QMainWindow):
                 mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
                     self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['meanImg'][self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
                                                                                                             self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]]
-                
             elif i == 1:
                 mimg = np.zeros((self.Ly, self.Lx), np.float32)
                 mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
