@@ -191,9 +191,7 @@ class ROIDraw(QMainWindow):
         self.views = ["W: mean img",
                       "E: mean img (enhanced)",
                       "R: correlation map",
-                      "T: max projection",
-                      "Y: mean img chan2, corr",
-                      "U: mean img chan2"]                     
+                      "T: max projection"]                     
         b = 0
         self.viewbtns = QButtonGroup(self)
         for names in self.views:
@@ -201,16 +199,6 @@ class ROIDraw(QMainWindow):
             self.viewbtns.addButton(btn, b)
             self.l0.addWidget(btn, b, 4, 1, 1)
             btn.setEnabled(True)
-            if b==4:
-                if "meanImg_chan2_corrected" not in parent.ops:
-                    btn.setEnabled(False)
-                    btn.setStyleSheet(parent.styleInactive)
-
-            if b==5:
-                if "meanImg_chan2" not in parent.ops:
-                    btn.setEnabled(False)
-                    btn.setStyleSheet(parent.styleInactive)
-
             b += 1
         b = 0
         self.viewbtns.button(b).setChecked(True)
@@ -312,24 +300,11 @@ class ROIDraw(QMainWindow):
                 mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
                     self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['Vcorr']
                 
-            elif i == 3:
+            else i == 3:
                 mimg = np.zeros((self.Ly, self.Lx), np.float32)
                 if 'max_proj' in self.parent.ops:
                     mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
                         self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['max_proj']
-            elif i == 4:
-                mimg = np.zeros((self.Ly, self.Lx), np.float32)
-                if 'meanImg_chan2_corrected' in self.parent.ops:
-                    mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
-                        self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['meanImg_chan2_corrected'][self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
-                                                                                                                                self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]]
-            elif i == 5:
-                mimg = np.zeros((self.Ly, self.Lx), np.float32)
-                if 'meanImg_chan2' in self.parent.ops:
-                    mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
-                        self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['meanImg_chan2'][self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
-                                                                                                                      self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]]
-
 
             mimg1 = np.percentile(mimg, 1)
             mimg99 = np.percentile(mimg, 99)
@@ -381,12 +356,6 @@ class ROIDraw(QMainWindow):
             elif event.key() == QtCore.Qt.Key_T:
                 self.viewbtns.button(3).setChecked(True)
                 self.viewbtns.button(3).press(self, 3)
-            elif event.key() == QtCore.Qt.Key_Y:
-                self.viewbtns.button(4).setChecked(True)
-                self.viewbtns.button(4).press(self, 4)
-            elif event.key() == QtCore.Qt.Key_U:
-                self.viewbtns.button(5).setChecked(True)
-                self.viewbtns.button(5).press(self, 5)
 
     def add_ROI(self, pos=None):
         self.iROI = len(self.ROIs)
