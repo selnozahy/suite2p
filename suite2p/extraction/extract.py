@@ -132,7 +132,7 @@ def extract_traces_from_masks(ops, cell_masks, neuropil_masks):
     if 'reg_file_chan2' in ops:
        with BinaryRWFile(Ly=ops['Ly'], Lx=ops['Lx'],
                           filename=ops['reg_file_chan2']) as f:
-           F_chan2, Fneu_chan2 = extract_traces(cell_masks, neuropil_masks, batch_size=batch_size)
+           F_chan2, Fneu_chan2 = extract_traces(f, cell_masks, neuropil_masks, batch_size=batch_size)
     return F, Fneu, F_chan2, Fneu_chan2
 
 
