@@ -129,11 +129,11 @@ def extract_traces_from_masks(ops, cell_masks, neuropil_masks):
     with BinaryRWFile(Ly=ops['Ly'], Lx=ops['Lx'],
                       filename=ops['reg_file']) as f:    
         F, Fneu = extract_traces(f, cell_masks, neuropil_masks, batch_size=batch_size)
-    if 'reg_file_chan2' in ops:
-       with BinaryRWFile(Ly=ops['Ly'], Lx=ops['Lx'],
-                          filename=ops['reg_file_chan2']) as f:
-           F_chan2, Fneu_chan2 = extract_traces(f, cell_masks, neuropil_masks, batch_size=batch_size)
-    return F, Fneu, F_chan2, Fneu_chan2
+    #if 'reg_file_chan2' in ops:
+       #with BinaryRWFile(Ly=ops['Ly'], Lx=ops['Lx'],
+                  #        filename=ops['reg_file_chan2']) as f:
+           #F_chan2, Fneu_chan2 = extract_traces(f, cell_masks, neuropil_masks, batch_size=batch_size)
+    return F, Fneu# ,F_chan2, Fneu_chan2
 
 
 def extraction_wrapper(stat, f_reg, f_reg_chan2=None, cell_masks=None, neuropil_masks=None, ops=default_ops()):

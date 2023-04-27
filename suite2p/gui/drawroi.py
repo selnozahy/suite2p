@@ -283,8 +283,8 @@ class ROIDraw(QMainWindow):
         self.close()
 
     def normalize_img_add_masks(self):
-        masked_image = np.zeros(((self.Ly, self.Lx, 3, 6)))  # 3 for RGB and 4 for buttons
-        for i in np.arange(6):  # 4 because 4 buttons
+        masked_image = np.zeros(((self.Ly, self.Lx, 3, 4)))  # 3 for RGB and 4 for buttons
+        for i in np.arange(4):  # 4 because 4 buttons
             if i == 0:
                 mimg = np.zeros((self.Ly, self.Lx), np.float32)
                 mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
@@ -300,7 +300,7 @@ class ROIDraw(QMainWindow):
                 mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
                     self.parent.ops['xrange'][0]:self.parent.ops['xrange'][1]] = self.parent.ops['Vcorr']
                 
-            else i == 3:
+            elif i == 3:
                 mimg = np.zeros((self.Ly, self.Lx), np.float32)
                 if 'max_proj' in self.parent.ops:
                     mimg[self.parent.ops['yrange'][0]:self.parent.ops['yrange'][1],
