@@ -29,6 +29,7 @@ try:
         -------
         convolved_data: nImg x Ly x Lx
         """
+
         return ifft2(apply_dotnorm(fft2(mov), img)) #.astype(np.complex64)
 except:
     try:
@@ -47,6 +48,7 @@ except:
         """ compute fft2 over last two dimensions using pytorch
         size (padding) is not used
         """
+        data= data.astype(np.float32)
         data_torch = torch.from_numpy(data)
         data_torch = torch_fft(data_torch, dim=-1)
         data_torch = torch_fft(data_torch, dim=-2)
